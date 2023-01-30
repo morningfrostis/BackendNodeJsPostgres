@@ -1,6 +1,6 @@
 const jsonwebtoken = require('jsonwebtoken')
 const db = require('../models')
-const User = db.User;
+const User = db.user;
 
 const controlAuthentication = async (request, response, next) => {
     if (request.path.includes('/auth')) {

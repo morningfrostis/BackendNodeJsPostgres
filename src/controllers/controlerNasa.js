@@ -1,5 +1,5 @@
 const db = require('../models');
-const Data = db.Data;
+const Data = db.data;
 
 const getNasaList = async () => {
     const result = await Data.findAll(request.body);

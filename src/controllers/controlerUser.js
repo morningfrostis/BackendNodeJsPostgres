@@ -1,6 +1,6 @@
 const db = require('../models')
-const User = db.User;
-const Data = db.Data
+const User = db.user;
+const Data = db.data
 
 const getUserById = async (id) => {
     const user = await User.findByPk(id)

@@ -1,11 +1,12 @@
 const db = require('../models')
-const User = db.User;
+const User = db.user;
 const bcrypt = require('bcrypt')
 const jsonwebtoken = require('jsonwebtoken')
 const { getUserByEmail } = require('../controllers/controlerUser')
 const saltRounds = 10
 
 const signup = async ({ email, password }) => {
+    console.log(db.user)
     const existedUser = await getUserByEmail(email)
     if (existedUser) {
         throw new Error('User existed');

@@ -1,5 +1,5 @@
 const db = require('../models')
-const Data = db.Data;
+const Data = db.data;
 
 //Declaramos la función que llama a la api de la nasa
 
