@@ -4,7 +4,6 @@ const routerUser = require('./src/routes/users');
 const routerNasa = require('./src/routes/syncApiNasa');
 const routerAuth = require('./src/routes/auth');
 const { controlAuthentication } = require('./src/middelware/auth')
-const db = require('./src/models');
 const dotenv = require('dotenv')
 
 dotenv.config()
@@ -20,10 +19,9 @@ const startApp = async () => {
 
     app.use(controlAuthentication)
     app.use('/users', routerUser)
-    app.use('/syncApiNasa', routerNasa)
+    app.use('/rovers', routerNasa)
     app.use('/auth', routerAuth)
     try {
-        await db.sequelize.sync({ force: false });
         app.listen(port, () => {
             console.log('NASA APP running on port ' + port)
         })

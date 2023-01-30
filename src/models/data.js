@@ -3,6 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
+
   class data extends Model {
     /**
      * Helper method for defining associations.
@@ -11,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Data.belongsToMany(models.User, {
+      models.data.belongsToMany(models.user, {
         through: 'UserData',
         as: 'favoritedBy',
         foreignKey: 'dataId'
