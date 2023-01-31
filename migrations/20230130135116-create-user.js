@@ -2,17 +2,11 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.sequelize.query(`
-    CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-    `);
-    await queryInterface.sequelize.query(`
-    CREATE EXTENSION IF NOT EXISTS "pgcrypto";`
-    );
     await queryInterface.createTable('users', {
       id: {
         type: Sequelize.UUID,
         primaryKey: true,
-        defaultValue: Sequelize.literal('gen_random_uuid()'),
+        defaultValue: Sequelize.UUIDV4,
         allowNull: false,
       },
       email: {
@@ -23,10 +17,6 @@ module.exports = {
       password: {
         type: Sequelize.STRING,
         allowNull: false
-      },
-      nasaFavs: {
-        type: Sequelize.ARRAY(Sequelize.INTEGER),
-        defaultValue: []
       },
       salt: {
         type: Sequelize.STRING,

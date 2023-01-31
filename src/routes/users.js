@@ -2,12 +2,12 @@ const routerUser = require('express').Router()
 const { getUserById, toggleNasaToFavorite, getAll } = require('../controllers/controlerUser')
 
 // Agregar favoritos a un usuario y controlar si existe dicho favorito en la DB
-routerUser.post('/addToFavorites/:idNasa', async (request, response) => {
+routerUser.post('/addToFavorites/:roverId', async (request, response) => {
     try {
-        const { idNasa } = request.params
+        const { roverId } = request.params
         const { user, isAdded } = await toggleNasaToFavorite({
-            id: request.user.id,
-            idNasa
+            userId: request.user.id,
+            roverId
         })
         if (isAdded) {
             response.status(200).json('Favorites successfully added')

@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-        user.belongsToMany(models.Data, {
+        user.belongsToMany(models.data, {
         through: 'UserData',
         as: 'favorites',
         foreignKey: 'userId'
@@ -19,9 +19,18 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   user.init({
-    email: DataTypes.STRING,
+    id: {
+      type: DataTypes.UUID,
+      primaryKey: true,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
+    },
+    email: {
+        type: DataTypes.STRING,
+        unique: true,
+        allowNull: false
+    },
     password: DataTypes.STRING,
-    nasaFavs: DataTypes.ARRAY(DataTypes.STRING),
     salt: DataTypes.STRING
   }, {
     sequelize,

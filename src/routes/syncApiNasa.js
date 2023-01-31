@@ -7,7 +7,7 @@ routerNasa.get('/', async (request, response) => {
         const result = await getApi()
         response.status(200).json(result)
     } catch (error) {
-        response.status(500).json(result);
+        response.status(500).json(error);
     }
 });
 
@@ -17,7 +17,7 @@ routerNasa.get('/:id', async (request, response) => {
         const result = await getNasaById(id)
         response.status(200).json(result)
     } catch (error) {
-        response.status(500).json(result)
+        response.status(500).json(error)
     }
 });
 
@@ -26,6 +26,7 @@ routerNasa.post('/', async (request, response) => {
         const result = await createNasa(request.body);
         response.status(201).json(result);
     } catch (error) {
+        console.log(error)
         response.status(500).json({ message: "Create server error" });
     }
 });

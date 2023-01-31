@@ -9,20 +9,14 @@ module.exports = {
     await queryInterface.sequelize.query(`
     CREATE EXTENSION IF NOT EXISTS "pgcrypto";`
     );
-    /**
-     * Add altering commands here.
-     *
-     * Example:
-     * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
-     */
   },
 
   async down (queryInterface, Sequelize) {
-    /**
-     * Add reverting commands here.
-     *
-     * Example:
-     * await queryInterface.dropTable('users');
-     */
+    await queryInterface.sequelize.query(`
+    DROP EXTENSION IF EXISTS "uuid-ossp";`
+    );
+    await queryInterface.sequelize.query(`
+    DROP EXTENSION IF EXISTS "pgcrypto";`
+    );
   }
 };
