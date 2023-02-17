@@ -5,11 +5,13 @@ const routerNasa = require('./src/routes/syncApiNasa');
 const routerAuth = require('./src/routes/auth');
 const { controlAuthentication } = require('./src/middelware/auth')
 const dotenv = require('dotenv')
+const cors = require('cors')
 
 dotenv.config()
 
 const startApp = async () => {
     const app = express();
+    app.use(cors());
     const port = process.env.PORT
 
     app.use(bodyParser.json());
